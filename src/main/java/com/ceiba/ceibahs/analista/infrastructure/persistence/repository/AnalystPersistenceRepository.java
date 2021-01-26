@@ -4,15 +4,16 @@ import com.ceiba.ceibahs.analista.domain.model.Analyst;
 import com.ceiba.ceibahs.analista.domain.port.AnalystRepository;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.AnalystTranslater;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 
-@Component
-public class AnalystRepositoryH2 implements AnalystRepository {
+@Repository
+public class AnalystPersistenceRepository implements AnalystRepository {
 
     private final EntityManager entityManager;
 
-    public AnalystRepositoryH2(EntityManager entityManager) {
+    public AnalystPersistenceRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -39,10 +40,5 @@ public class AnalystRepositoryH2 implements AnalystRepository {
     @Override
     public void changeStatus(Long id) {
 
-    }
-
-    @Override
-    public boolean validateEmployeeCode(String employeeCode) {
-        return true;
     }
 }

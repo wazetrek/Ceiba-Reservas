@@ -4,20 +4,20 @@ import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.domain.port.AnalystDao;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.AnalystTranslater;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class AnalystDaoH2 implements AnalystDao {
+@Repository
+public class AnalystPersistenceDao implements AnalystDao {
 
     private final EntityManager entityManager;
     private static final String ACTIVE_ANALYSTS = "Analysts.byActiveStatus";
 
-    public AnalystDaoH2(EntityManager entityManager) {
+    public AnalystPersistenceDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
