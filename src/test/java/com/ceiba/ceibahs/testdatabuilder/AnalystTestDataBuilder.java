@@ -12,7 +12,6 @@ public class AnalystTestDataBuilder {
     private static final Boolean STATUS = true;
     private static final LocalDateTime BIRTH_DATE = LocalDateTime.of(1999, 01, 10, 00, 00);
 
-
     private Long id;
     private String fullName;
     private String employeeCode;
@@ -34,4 +33,6 @@ public class AnalystTestDataBuilder {
     public Analyst build() {
         return new Analyst(id, fullName, employeeCode, status, birthDate);
     }
+
+
 }

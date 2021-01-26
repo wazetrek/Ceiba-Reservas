@@ -1,6 +1,7 @@
 package com.ceiba.ceibahs.reserva.domain.service;
 
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
+import com.ceiba.ceibahs.reserva.domain.model.ReservationDto;
 import com.ceiba.ceibahs.reserva.domain.port.ReservationRepository;
 
 public class CreateReservationService {
@@ -11,7 +12,7 @@ public class CreateReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public Reservation create(Reservation reservation) {
+    public ReservationDto create(Reservation reservation) {
         return reservationRepository.create(reservation);
     }
 }

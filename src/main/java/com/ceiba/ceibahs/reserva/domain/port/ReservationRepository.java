@@ -1,6 +1,7 @@
 package com.ceiba.ceibahs.reserva.domain.port;
 
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
+import com.ceiba.ceibahs.reserva.domain.model.ReservationDto;
 
 public interface ReservationRepository {
 
@@ -8,7 +9,7 @@ public interface ReservationRepository {
      * Permite crear una reserva
      * @return reserva creada
      */
-    public Reservation create(Reservation reservation);
+    public ReservationDto create(Reservation reservation);
 
     /**
      * Permite actualizar el diagnóstico y el estado de la reserva

@@ -1,4 +1,4 @@
-package com.ceiba.ceibahs.analista.infrastructure.configuration;
+package com.ceiba.ceibahs.analista.infrastructure;
 
 import com.ceiba.ceibahs.analista.domain.port.AnalystDao;
 import com.ceiba.ceibahs.analista.domain.port.AnalystRepository;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ServiceBean {
+public class AnalystServiceBean {
 
     @Bean
     public CreateAnalystService createAnalystService(AnalystRepository analystRepository) {

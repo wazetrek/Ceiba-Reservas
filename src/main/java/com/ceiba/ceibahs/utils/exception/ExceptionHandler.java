@@ -9,14 +9,16 @@ import java.util.concurrent.ConcurrentHashMap;
 @ControllerAdvice
 public class ExceptionHandler {
 
-	private static final String ERROR_INESPERADO_CONTACTAR_ADMIN="Error inesperado servicio gestionParqueadero, contacta al admin";
+	private static final String ERROR_INESPERADO_CONTACTAR_ADMIN="Error inesperado servicio de reservas, contacta al admin";
 	private static final ConcurrentHashMap<String, Integer> CODIGOS_ESTADO= new ConcurrentHashMap<>();
 
 	public ExceptionHandler(){
 		CODIGOS_ESTADO.put(ObligatoryFieldException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 	}
 	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
-	public final ResponseEntity<Error> handleAllException(Exception exception){
+	public final ResponseEntity<Error> handleAllException(Exception exception) {
+		System.out.println(exception);
+
 		ResponseEntity<Error> resultado;
 		
 		String excepcionNombre=exception.getClass().getSimpleName();
