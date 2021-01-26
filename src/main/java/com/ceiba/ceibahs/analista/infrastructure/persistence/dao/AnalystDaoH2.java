@@ -2,7 +2,7 @@ package com.ceiba.ceibahs.analista.infrastructure.persistence.dao;
 
 import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.domain.port.AnalystDao;
-import com.ceiba.ceibahs.analista.infrastructure.persistence.AnalystBuilder;
+import com.ceiba.ceibahs.analista.infrastructure.persistence.AnalystTranslater;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +27,7 @@ public class AnalystDaoH2 implements AnalystDao {
         Query query = entityManager.createNamedQuery(ACTIVE_ANALYSTS);
         List analystEntityList = query.getResultList();
         for (Object analystEntity : analystEntityList) {
-            analystDtos.add(AnalystBuilder.parseAnalystToDto((AnalystEntity) analystEntity));
+            analystDtos.add(AnalystTranslater.parseAnalystToDto((AnalystEntity) analystEntity));
         }
         return analystDtos;
     }

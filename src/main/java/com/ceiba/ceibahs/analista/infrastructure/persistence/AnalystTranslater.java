@@ -7,9 +7,9 @@ import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntit
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class AnalystBuilder {
+public class AnalystTranslater {
 
-    public AnalystBuilder() {
+    public AnalystTranslater() {
     }
 
     public static AnalystEntity parseAnalystToEntity(Analyst analyst) {

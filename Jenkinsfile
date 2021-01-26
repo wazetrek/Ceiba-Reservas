@@ -36,12 +36,19 @@ pipeline {
 		}
 	}
 
+    stage('Build') {
+        steps {
+            echo "------------>Build<------------"
+            //Construir sin tarea test que se ejecutó previamente
+            sh 'chmod 777 gradlew'
+            sh './gradlew clean build'
+        }
+    }
 
     stage('Compile & Unit Tests') {
 		steps{
 			echo "------------>Unit Tests<------------"
-			sh 'gradle --b build.gradle clean'
-			sh 'gradle --b build.gradle test'
+			sh './gradlew test'
 		}
 	}
 
@@ -54,16 +61,7 @@ pipeline {
 			}
 		}
 	}
-
-    stage('Build') {
-		steps{
-			echo "------------>Build<------------"
-			//Construir sin tarea test que se ejecutó previamente
-			sh 'gradle --b build.gradle build -x test'
-			}
-		}
-  }
-
+}
   post {
     always {
       echo 'This will always run'
