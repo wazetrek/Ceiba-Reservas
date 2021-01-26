@@ -22,12 +22,4 @@ public interface AnalystRepository {
      * @param id
      */
     void changeStatus(Long id);
-
-    /**
-     * Valida si existe un analysta desde el código de empleado
-     * @param employeeCode
-     * @return existencia del empleado
-     */
-    boolean validateEmployeeCode(String employeeCode);
-
 }
