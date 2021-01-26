@@ -1,4 +1,4 @@
 package com.ceiba.ceibahs.domain.unit;
 
-public class RservationTest {
+public class ReservationTest {
 }
