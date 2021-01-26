@@ -7,9 +7,6 @@ import lombok.Getter;
 public class Analyst {
 
     private static final String FULL_NAME_OBLIGATORY = "Nombre completo obligatorio";
-    private static final String EMPLOYEE_CODE_OBLIGATORY = "Código de empleado obligatorio";
-    private static final String MAX_EMPLOYEE_CODE_ERROR = "La cantidad de caracteres del código de empleado es erronea";
-    private static final Long MAX_EMPLOYEE_CODE_CHARACTERS = 10L;
 
     private Long id;
     private String fullName;

@@ -27,6 +27,10 @@ public class AnalystTestDataBuilder {
         this.birthDate = BIRTH_DATE.toString();
     }
 
+    public Analyst withoutFullName() {
+        return new Analyst(id, null, employeeCode, status, birthDate);
+    }
+
     public Analyst build() {
         return new Analyst(id, fullName, employeeCode, status, birthDate);
     }

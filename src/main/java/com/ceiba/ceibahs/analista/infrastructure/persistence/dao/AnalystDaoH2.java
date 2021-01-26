@@ -25,9 +25,9 @@ public class AnalystDaoH2 implements AnalystDao {
     public List<AnalystDto> getAnalysts() {
         List<AnalystDto> analystDtos = new ArrayList<>();
         Query query = entityManager.createNamedQuery(ACTIVE_ANALYSTS);
-        List<AnalystEntity> analystEntityList= query.getResultList();
-        for (AnalystEntity analystEntity : analystEntityList) {
-            analystDtos.add(AnalystBuilder.parseAnalystToDto(analystEntity));
+        List analystEntityList = query.getResultList();
+        for (Object analystEntity : analystEntityList) {
+            analystDtos.add(AnalystBuilder.parseAnalystToDto((AnalystEntity) analystEntity));
         }
         return analystDtos;
     }

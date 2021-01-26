@@ -6,7 +6,6 @@ import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntit
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class AnalystBuilder {
 

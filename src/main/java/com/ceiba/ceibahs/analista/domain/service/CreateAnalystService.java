@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class CreateAnalystService {
 
-    private final String EMPLOYEE_CODE_NO_VALID = "Código de empleado no válido";
     private final AnalystRepository analystRepository;
 
     public CreateAnalystService(AnalystRepository analystRepository) {
@@ -17,17 +16,11 @@ public class CreateAnalystService {
     public Analyst create(Analyst analyst) {
         String employeeCode = generateEmployeeCode();
         analyst.setEmployeeCode(employeeCode);
-        validateEmployeeCode(analyst);
         return this.analystRepository.create(analyst);
-    }
-
-    private void validateEmployeeCode(Analyst analyst) {
-        boolean exist = this.analystRepository.validateEmployeeCode(analyst.getEmployeeCode());
     }
 
     private String generateEmployeeCode() {
         Date date = new Date();
-        String timeMilli = Long.toString(date.getTime());
-        return timeMilli;
+        return Long.toString(date.getTime());
     }
 }

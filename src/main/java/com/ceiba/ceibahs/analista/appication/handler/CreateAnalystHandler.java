@@ -22,7 +22,6 @@ public class CreateAnalystHandler {
     @Transactional
     public Analyst execute(AnalystCommand analystCommand) {
         Analyst analyst = analystFactory.createAnalyst(analystCommand);
-        Analyst newAnalyst = createAnalystService.create(analyst);
-        return newAnalyst;
+        return createAnalystService.create(analyst);
     }
 }
