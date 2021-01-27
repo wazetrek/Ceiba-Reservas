@@ -5,7 +5,7 @@ import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
 
 public final class FieldValidate {
 
-    public FieldValidate() {
+    private FieldValidate() {
         throw new IllegalStateException("Clase de utilidad");
     }
 
