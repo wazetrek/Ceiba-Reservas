@@ -32,6 +32,10 @@ public class CreateReservationService {
         return reservationRepository.create(reservation);
     }
 
+    /**
+     * Nos permite validar que el día seleccionado para la reserva no sea domingo
+     * @param reservationDate
+     */
     private void validateDayOfReservation(LocalDateTime reservationDate) {
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
         if (dayOfTheWeek == DayOfWeek.SUNDAY.getValue()) {
@@ -39,13 +43,27 @@ public class CreateReservationService {
         }
     }
 
+    /**
+     * Nos permite verificar que las horas seleccionadas para la reserva concuerden con la disponibilidad
+     * de horas establecido
+     * @param reservationDate
+     */
     private void validateInvalidHours(LocalDateTime reservationDate) {
-        List<Integer> validHours = List.of(9, 10, 11, 13, 14, 15, 16, 17);
-        if (!validHours.contains(reservationDate.getHour())) {
+        List<Integer> weekValidHours = List.of(9, 10, 11, 13, 14, 15, 16, 17);
+        List<Integer> saturdayValidHours = List.of(9, 10, 11, 13, 14);
+        int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
+        if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue() && !saturdayValidHours.contains(reservationDate.getHour())) {
+            throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
+        } else if (dayOfTheWeek != DayOfWeek.SUNDAY.getValue() && !weekValidHours.contains(reservationDate.getHour())) {
             throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
         }
     }
 
+    /**
+     * Nos permite validar el valor de la reserva donde se busca evitar recibir precios no establecidos
+     * @param value
+     * @param reservationDate
+     */
     private void validateReservationValue(int value, LocalDateTime reservationDate){
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
         if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue()) {
