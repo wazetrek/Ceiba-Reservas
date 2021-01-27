@@ -14,8 +14,9 @@ import java.util.List;
 
 public class CreateReservationService {
 
-    private static final String NO_VALID_RESERVATION_VALUE = "El valor de la reserva no ha podido ser calculado correctamente";
+    private static final String INVALID_RESERVATION_VALUE = "El valor de la reserva no ha podido ser calculado correctamente";
     private static final String RESERVATION_DAY_NOT_VALID  = "No es posible programar una reserva para un día domingo";
+    private static final String INVALID_RESERVATION_DATE  = "No es posible programar una reserva para un día y hora anterior al actual";
     private static final String INVALID_RESERVATION_HOUR  = "La hora seleccionada para la reserva no es válida";
 
     private ReservationRepository reservationRepository;
@@ -27,9 +28,17 @@ public class CreateReservationService {
     public ReservationDto create(Reservation reservation) {
         validateDayOfReservation(reservation.getReservationDate());
         validateInvalidHours(reservation.getReservationDate());
+        validatePreviousDays(reservation.getReservationDate());
         validateReservationValue(reservation.getValue(), reservation.getReservationDate());
         reservation.setStatus(ReservationStatus.ACTIVE);
         return reservationRepository.create(reservation);
+    }
+
+    private void validatePreviousDays(LocalDateTime localDateTime) {
+        LocalDateTime currentLocalDateTime = LocalDateTime.now().plusMinutes(30);
+        if (localDateTime.isBefore(currentLocalDateTime)) {
+            throw new InvalidReservationHourException(INVALID_RESERVATION_DATE);
+        }
     }
 
     /**
@@ -67,11 +76,11 @@ public class CreateReservationService {
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
         if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue()) {
             if (value != 40000) {
-                throw new NoValidReservationValueException(NO_VALID_RESERVATION_VALUE);
+                throw new NoValidReservationValueException(INVALID_RESERVATION_VALUE);
             }
         } else {
             if (value != 35000) {
-                throw new NoValidReservationValueException(NO_VALID_RESERVATION_VALUE);
+                throw new NoValidReservationValueException(INVALID_RESERVATION_VALUE);
             }
         }
     }
