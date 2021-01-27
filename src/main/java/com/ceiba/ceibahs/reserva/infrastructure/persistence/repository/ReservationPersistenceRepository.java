@@ -27,12 +27,14 @@ public class ReservationPersistenceRepository implements ReservationRepository {
         entityManager.persist(reservationEntity);
         entityManager.flush();
         return new ReservationDto(
-            reservationEntity.getId(),
-            reservation.getAnalyst(),
-            reservation.getReservationDate(),
-            reservation.getValue(),
-            reservation.getDiagnosis(),
-            reservation.getStatus()
+                reservationEntity.getId(),
+                reservation.getAnalyst(),
+                reservationEntity.getReservationDate(),
+                reservationEntity.getValue(),
+                reservationEntity.getDiagnosis(),
+                reservationEntity.getStatus(),
+                reservationEntity.getPaymentType(),
+                reservationEntity.getDollarValue()
         );
     }
 

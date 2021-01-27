@@ -1,6 +1,8 @@
 package com.ceiba.ceibahs.reserva.infrastructure.persistence.entity;
 
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
+import com.ceiba.ceibahs.utils.enums.PaymentType;
+import com.ceiba.ceibahs.utils.enums.ReservationStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,11 +24,19 @@ public class ReservationEntity {
     private LocalDateTime reservationDate;
 
     @Column(name = "VALUE")
-    private String value;
+    private int value;
 
     @Column(name = "DIAGNOSIS")
     private String diagnosis;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "STATUS")
-    private String status;
+    private ReservationStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PAYMENT_TYPE")
+    private PaymentType paymentType;
+
+    @Column(name = "DOLLAR_VALUE")
+    private int dollarValue;
 }

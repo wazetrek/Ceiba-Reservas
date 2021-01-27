@@ -9,12 +9,13 @@ public class ReservationFactory {
 
     public Reservation createReservation(ReservationCommand reservationCommand) {
         return new Reservation(
-            reservationCommand.getId(),
-            reservationCommand.getAnalyst(),
-            reservationCommand.getReservationDate(),
-            reservationCommand.getValue(),
-            reservationCommand.getDiagnosis(),
-            reservationCommand.getStatus()
+                reservationCommand.getId(),
+                reservationCommand.getAnalyst(),
+                reservationCommand.getReservationDate(),
+                reservationCommand.getValue(),
+                reservationCommand.getDiagnosis(),
+                reservationCommand.getPaymentType(),
+                reservationCommand.getDollarValue()
         );
     }
 }
