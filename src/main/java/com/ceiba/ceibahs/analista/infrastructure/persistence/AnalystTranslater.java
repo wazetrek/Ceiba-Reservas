@@ -6,7 +6,9 @@ import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntit
 
 public class AnalystTranslater {
 
-    public AnalystTranslater() {
+
+    private AnalystTranslater() {
+        throw new IllegalStateException("Clase de traducción");
     }
 
     public static AnalystEntity parseAnalystToEntity(Analyst analyst) {

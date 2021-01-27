@@ -5,6 +5,10 @@ import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
 
 public class FieldValidate {
 
+    private FieldValidate() {
+        throw new IllegalStateException("Clase de utilidad");
+    }
+
     public static void validateNotNull(Object object, String errorMessage){
         if(object == null){
             throw new ObligatoryFieldException(errorMessage);
