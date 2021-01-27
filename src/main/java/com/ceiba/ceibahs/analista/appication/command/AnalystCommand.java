@@ -3,6 +3,8 @@ package com.ceiba.ceibahs.analista.appication.command;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 public class AnalystCommand {
@@ -11,6 +13,6 @@ public class AnalystCommand {
     private String fullName;
     private String employeeCode;
     private Boolean status;
-    private String birthDate;
+    private LocalDateTime birthDate;
 
 }

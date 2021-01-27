@@ -13,13 +13,11 @@ public class AnalystTranslater {
     }
 
     public static AnalystEntity parseAnalystToEntity(Analyst analyst) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime localDateTime = LocalDateTime.parse(analyst.getBirthDate(), formatter);
         AnalystEntity analystEntity = new AnalystEntity();
         analystEntity.setFullName(analyst.getFullName());
         analystEntity.setEmployeeCode(analyst.getEmployeeCode());
         analystEntity.setStatus(analyst.getStatus());
-        analystEntity.setBirthDate(localDateTime);
+        analystEntity.setBirthDate(analyst.getBirthDate());
         return analystEntity;
     }
 

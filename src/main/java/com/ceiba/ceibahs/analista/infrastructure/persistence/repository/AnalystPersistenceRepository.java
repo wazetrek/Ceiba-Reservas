@@ -28,7 +28,7 @@ public class AnalystPersistenceRepository implements AnalystRepository {
                 analystEntity.getFullName(),
                 analystEntity.getEmployeeCode(),
                 analystEntity.getStatus(),
-                analystEntity.getBirthDate().toString()
+                analystEntity.getBirthDate()
         );
     }
 

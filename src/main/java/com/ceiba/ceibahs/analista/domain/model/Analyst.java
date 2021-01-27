@@ -3,6 +3,8 @@ package com.ceiba.ceibahs.analista.domain.model;
 import com.ceiba.ceibahs.utils.FieldValidate;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class Analyst {
 
@@ -12,9 +14,9 @@ public class Analyst {
     private String fullName;
     private String employeeCode;
     private Boolean status;
-    private String birthDate;
+    private LocalDateTime birthDate;
 
-    public Analyst(Long id, String fullName, String employeeCode, Boolean status, String birthDate) {
+    public Analyst(Long id, String fullName, String employeeCode, Boolean status, LocalDateTime birthDate) {
 
         FieldValidate.validateNotNull(fullName, FULL_NAME_OBLIGATORY);
 
