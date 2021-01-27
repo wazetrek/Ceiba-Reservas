@@ -34,6 +34,10 @@ public class CreateReservationService {
         return reservationRepository.create(reservation);
     }
 
+    /**
+     * Nos permite validar que no seleccionemos fecha y hora anteriores a la actual.
+     * @param localDateTime
+     */
     private void validatePreviousDays(LocalDateTime localDateTime) {
         LocalDateTime currentLocalDateTime = LocalDateTime.now().plusMinutes(30);
         if (localDateTime.isBefore(currentLocalDateTime)) {
