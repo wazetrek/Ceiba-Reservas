@@ -16,14 +16,14 @@ public class AnalystTestDataBuilder {
     private String fullName;
     private String employeeCode;
     private Boolean status;
-    private String birthDate;
+    private LocalDateTime birthDate;
 
     public AnalystTestDataBuilder() {
         this.id = ID;
         this.fullName = FULL_NAME;
         this.employeeCode = EMPLOYEE_CODE;
         this.status = STATUS;
-        this.birthDate = BIRTH_DATE.toString();
+        this.birthDate = BIRTH_DATE;
     }
 
     public Analyst withoutFullName() {
