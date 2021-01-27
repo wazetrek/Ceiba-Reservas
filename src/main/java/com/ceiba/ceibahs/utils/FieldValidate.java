@@ -3,9 +3,9 @@ package com.ceiba.ceibahs.utils;
 import com.ceiba.ceibahs.utils.exception.MaxCharacterException;
 import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
 
-public class FieldValidate {
+public final class FieldValidate {
 
-    private FieldValidate() {
+    public FieldValidate() {
         throw new IllegalStateException("Clase de utilidad");
     }
 

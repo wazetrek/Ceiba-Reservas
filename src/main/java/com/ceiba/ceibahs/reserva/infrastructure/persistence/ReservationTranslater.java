@@ -3,9 +3,10 @@ package com.ceiba.ceibahs.reserva.infrastructure.persistence;
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.entity.ReservationEntity;
 
-public class ReservationTranslater {
+public final class ReservationTranslater {
 
-    public ReservationTranslater() {
+    private ReservationTranslater() {
+        throw new IllegalStateException("Clase de traducción");
     }
 
     public static ReservationEntity parseReservationToEntity(Reservation reservation) {

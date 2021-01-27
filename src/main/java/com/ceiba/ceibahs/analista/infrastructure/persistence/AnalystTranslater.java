@@ -4,8 +4,7 @@ import com.ceiba.ceibahs.analista.domain.model.Analyst;
 import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
 
-public class AnalystTranslater {
-
+public final class AnalystTranslater {
 
     private AnalystTranslater() {
         throw new IllegalStateException("Clase de traducción");
