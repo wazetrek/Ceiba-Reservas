@@ -4,9 +4,6 @@ import com.ceiba.ceibahs.analista.domain.model.Analyst;
 import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class AnalystTranslater {
 
     public AnalystTranslater() {

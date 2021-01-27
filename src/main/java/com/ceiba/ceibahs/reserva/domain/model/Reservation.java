@@ -47,23 +47,11 @@ public class Reservation {
         this.reservationDate = reservationDate;
         this.value = value;
         this.diagnosis = diagnosis;
-        this.status = status;
         this.paymentType = paymentType;
         this.dollarValue = dollarValue;
     }
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
-    }
-
-    public Reservation(Long id, Analyst analyst, LocalDateTime reservationDate, int value, String diagnosis, ReservationStatus status, PaymentType paymentType, int dollarValue) {
-        this.id = id;
-        this.analyst = analyst;
-        this.reservationDate = reservationDate;
-        this.value = value;
-        this.diagnosis = diagnosis;
-        this.status = status;
-        this.paymentType = paymentType;
-        this.dollarValue = dollarValue;
     }
 }
