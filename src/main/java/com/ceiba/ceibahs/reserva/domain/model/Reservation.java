@@ -25,16 +25,6 @@ public class Reservation {
     private PaymentType paymentType;
     private int dollarValue;
 
-    /**
-     * Constructor para crear la reserva
-     * @param id
-     * @param analyst
-     * @param reservationDate
-     * @param value
-     * @param diagnosis
-     * @param paymentType
-     * @param dollarValue
-     */
     public Reservation(Long id, Analyst analyst, LocalDateTime reservationDate, int value, String diagnosis, PaymentType paymentType, int dollarValue) {
 
         FieldValidate.validateNotNull(reservationDate, RESERVATION_DATE_OBLIGATORY);
@@ -53,5 +43,9 @@ public class Reservation {
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
