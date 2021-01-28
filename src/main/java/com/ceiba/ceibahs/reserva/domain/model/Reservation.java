@@ -96,7 +96,7 @@ public class Reservation {
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
         if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue() && !saturdayValidHours.contains(reservationDate.getHour())) {
             throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
-        } else if (dayOfTheWeek != DayOfWeek.SUNDAY.getValue() && !weekValidHours.contains(reservationDate.getHour())) {
+        } else if (dayOfTheWeek != DayOfWeek.SUNDAY.getValue() && dayOfTheWeek != DayOfWeek.SATURDAY.getValue() && !weekValidHours.contains(reservationDate.getHour())) {
             throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
         }
     }
