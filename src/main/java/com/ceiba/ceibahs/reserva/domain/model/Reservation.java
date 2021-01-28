@@ -16,19 +16,20 @@ public class Reservation {
     private static final String ANALYST_OBLIGATORY = "El valor de reserva es obligatorio";
     private static final String PAYMENT_TYPE_OBLIGATORY = "El tipo de pago es obligatorio";
 
-    private Long id;
-    private Analyst analyst;
-    private LocalDateTime reservationDate;
+    private final Long id;
+    private final Analyst analyst;
+    private final LocalDateTime reservationDate;
     private int value;
-    private String diagnosis;
+    private final String diagnosis;
     private ReservationStatus status;
-    private PaymentType paymentType;
-    private int dollarValue;
+    private final PaymentType paymentType;
+    private final int dollarValue;
 
     public Reservation(Long id, Analyst analyst, LocalDateTime reservationDate, int value, String diagnosis, PaymentType paymentType, int dollarValue) {
 
         FieldValidate.validateNotNull(reservationDate, RESERVATION_DATE_OBLIGATORY);
         FieldValidate.validateNotNull(value, VALUE_OBLIGATORY);
+        FieldValidate.validateNotZeroValue(value, VALUE_OBLIGATORY);
         FieldValidate.validateNotNull(analyst, ANALYST_OBLIGATORY);
         FieldValidate.validateNotNull(paymentType, PAYMENT_TYPE_OBLIGATORY);
 
