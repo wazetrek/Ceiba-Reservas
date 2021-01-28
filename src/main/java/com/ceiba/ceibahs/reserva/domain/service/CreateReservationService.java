@@ -20,7 +20,7 @@ public class CreateReservationService {
     private static final String INVALID_RESERVATION_DATE = "No es posible programar una reserva para un día y hora anterior al actual";
     private static final String INVALID_RESERVATION_HOUR = "La hora seleccionada para la reserva no es válida";
 
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
 
     public CreateReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
@@ -39,8 +39,8 @@ public class CreateReservationService {
     }
 
     private int calculateMoneyChange(int value, int dollarValue) {
-        double resultado = (double) value /  (double) dollarValue;
-        return (int) Math.ceil(resultado);
+        double result = (double) value /  (double) dollarValue;
+        return (int) Math.ceil(result);
     }
 
     /**
