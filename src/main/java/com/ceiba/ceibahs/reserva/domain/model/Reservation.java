@@ -13,8 +13,8 @@ public class Reservation {
 
     private static final String RESERVATION_DATE_OBLIGATORY = "La fecha de reserva es obligatoria";
     private static final String VALUE_OBLIGATORY = "El valor de reserva es obligatorio";
-    private static final String ANALYST_OBLIGATORY = "El valor de reserva es obligatorio";
-    private static final String PAYMENT_TYPE_OBLIGATORY = "El tipo de pago es obligatorio";
+    private static final String ANALYST_OBLIGATORY = "La reserva debe tener un analista seleccionado";
+    private static final String PAYMENT_TYPE_OBLIGATORY = "Debe seleccionar un tipo de pago";
 
     private final Long id;
     private final Analyst analyst;
