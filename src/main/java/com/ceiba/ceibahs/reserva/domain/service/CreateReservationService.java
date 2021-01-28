@@ -17,10 +17,6 @@ public class CreateReservationService {
     public ReservationDto create(Reservation reservation) {
         reservation.validatePreviousDays(reservation.getReservationDate());
         reservation.setStatus(ReservationStatus.ACTIVE);
-
-        if (reservation.getPaymentType().equals(PaymentType.USD)) {
-            reservation.setValue(reservation.calculateMoneyChange(reservation.getValue(), reservation.getDollarValue()));
-        }
         return reservationRepository.create(reservation);
     }
 }

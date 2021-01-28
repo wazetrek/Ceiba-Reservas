@@ -11,7 +11,7 @@ public class ReservationTestDataBuilder {
 
     private static final Long ID = 10L;
     private static final Analyst ANALYST = new AnalystTestDataBuilder().build();
-    private static final LocalDateTime RESERVATION_DATE = LocalDateTime.of(1999, 01, 10, 00, 00);
+    private static final LocalDateTime RESERVATION_DATE_SUNDAY = LocalDateTime.of(1999, 01, 10, 00, 00);
     private static final int VALUE = 35000;
     private static final String DIAGNOSIS = null;
     private static final ReservationStatus STATUS = ReservationStatus.ACTIVE;
@@ -30,7 +30,7 @@ public class ReservationTestDataBuilder {
     public ReservationTestDataBuilder() {
         this.id = ID;
         this.analyst = ANALYST;
-        this.reservationDate = RESERVATION_DATE;
+        this.reservationDate = RESERVATION_DATE_SUNDAY;
         this.value = VALUE;
         this.diagnosis = DIAGNOSIS;
         this.status = STATUS;
@@ -95,5 +95,9 @@ public class ReservationTestDataBuilder {
     public ReservationTestDataBuilder paymentTypeNull () {
         this.paymentType = null;
         return this;
+    }
+
+    public void validatePreviousDate () {
+        new Reservation(id, analyst, reservationDate, value, diagnosis, paymentType, dollarValue).validatePreviousDays(reservationDate);
     }
 }

@@ -46,6 +46,10 @@ public class Reservation {
         validateInvalidHours(reservationDate);
         validateReservationValue(value, reservationDate);
 
+        if (paymentType.equals(PaymentType.USD)) {
+            value = calculateCurrencyChange(value, dollarValue);
+        }
+
         this.id = id;
         this.analyst = analyst;
         this.reservationDate = reservationDate;
@@ -63,7 +67,7 @@ public class Reservation {
         this.value = value;
     }
 
-    public int calculateMoneyChange(int value, int dollarValue) {
+    public int calculateCurrencyChange(int value, int dollarValue) {
         double result = (double) value /  (double) dollarValue;
         return (int) Math.ceil(result);
     }
