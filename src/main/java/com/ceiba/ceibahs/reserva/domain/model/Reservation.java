@@ -94,8 +94,9 @@ public class Reservation {
         List<Integer> weekValidHours = List.of(9, 10, 11, 13, 14, 15, 16, 17);
         List<Integer> saturdayValidHours = List.of(9, 10, 11, 13, 14);
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
-        if ((dayOfTheWeek == DayOfWeek.SATURDAY.getValue() && !saturdayValidHours.contains(reservationDate.getHour()))
-                || (dayOfTheWeek != DayOfWeek.SUNDAY.getValue() && !weekValidHours.contains(reservationDate.getHour()))) {
+        if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue() && !saturdayValidHours.contains(reservationDate.getHour())) {
+            throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
+        } else if (dayOfTheWeek != DayOfWeek.SUNDAY.getValue() && !weekValidHours.contains(reservationDate.getHour())) {
             throw new InvalidReservationHourException(INVALID_RESERVATION_HOUR);
         }
     }
