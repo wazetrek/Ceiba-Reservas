@@ -3,10 +3,7 @@ package com.ceiba.ceibahs.domain.unit;
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
 import com.ceiba.ceibahs.testdatabuilder.ReservationTestDataBuilder;
 import com.ceiba.ceibahs.utils.enums.PaymentType;
-import com.ceiba.ceibahs.utils.exception.InvalidReservationHourException;
-import com.ceiba.ceibahs.utils.exception.NoZeroValueException;
-import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
-import com.ceiba.ceibahs.utils.exception.ReservationDayNotValidException;
+import com.ceiba.ceibahs.utils.exception.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,10 +11,8 @@ import java.time.LocalDateTime;
 
 public class ReservationTest {
 
-    private static final LocalDateTime RESERVATION_DATE = LocalDateTime.of(2021, 01, 11, 9, 00, 00);
-    private static final LocalDateTime PREVIOUS_RESERVATION_DATE = LocalDateTime.of(2021, 01, 11, 9, 00, 00);
+    private static final LocalDateTime RESERVATION_DATE = LocalDateTime.of(2031, 01, 10, 9, 00, 00);
     private static final LocalDateTime RESERVATION_DATE_SATURDAY = LocalDateTime.of(2021, 01, 9, 9, 00, 00);
-    private static final LocalDateTime RESERVATION_DATE_SUNDAY = LocalDateTime.of(2021, 01, 10, 00, 00, 00);
     private static final int VALUE_ON_SATURDAYS = 40000;
     private static final int VALUE_ON_WEEKDAY = 35000;
     private static final int DOLLAR_VALUE = 3000;
@@ -58,6 +53,21 @@ public class ReservationTest {
         Reservation reservation = reservationTestDataBuilder.build();
 
         assertEquals(RESERVATION_DATE, reservation.getReservationDate());
+        assertEquals(valueInUsd, reservation.getValue());
+    }
+
+    @Test
+    void testCreationOfReservationWithPaymentTypeInUsdOnOneSaturday() {
+        double value = (double) VALUE_ON_SATURDAYS / (double) DOLLAR_VALUE;
+        int valueInUsd = (int) Math.ceil(value);
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE_SATURDAY)
+                .setValue(VALUE_ON_SATURDAYS)
+                .setPaymentType(PaymentType.USD);
+
+        Reservation reservation = reservationTestDataBuilder.build();
+
+        assertEquals(RESERVATION_DATE_SATURDAY, reservation.getReservationDate());
         assertEquals(valueInUsd, reservation.getValue());
     }
 
@@ -108,9 +118,9 @@ public class ReservationTest {
 
     @Test
     void testCreationOfReservationWithPreviousDate() {
-
+        LocalDateTime previousReservationDate = LocalDateTime.of(2021, 01, 11, 9, 00, 00);
         ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
-                .setReservationDate(PREVIOUS_RESERVATION_DATE);
+                .setReservationDate(previousReservationDate);
 
         Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::validatePreviousDate);
 
@@ -119,12 +129,59 @@ public class ReservationTest {
 
     @Test
     void testCreationOfReservationWithSundayDay() {
+        LocalDateTime reservationDateSunday = LocalDateTime.of(2021, 01, 10, 9, 00, 00);
         ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
-                .setReservationDate(RESERVATION_DATE_SUNDAY);
+                .setReservationDate(reservationDateSunday);
 
         Throwable throwable = assertThrows(ReservationDayNotValidException.class, reservationTestDataBuilder::build);
 
         assertEquals(throwable.getMessage(), "No es posible programar una reserva para un día domingo");
+    }
+
+    @Test
+    void testCreationOfReservationWithInvalidValueOnOneWeekDay() {
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE)
+                .setValue(VALUE_ON_SATURDAYS);
+
+        Throwable throwable = assertThrows(NoValidReservationValueException.class, reservationTestDataBuilder::build);
+
+        assertEquals(throwable.getMessage(), "El valor de la reserva no ha podido ser calculado correctamente");
+    }
+
+    @Test
+    void testCreationOfReservationWithInvalidValueOnOneSaturday() {
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE_SATURDAY)
+                .setValue(VALUE_ON_WEEKDAY);
+
+        Throwable throwable = assertThrows(NoValidReservationValueException.class, reservationTestDataBuilder::build);
+
+        assertEquals(throwable.getMessage(), "El valor de la reserva no ha podido ser calculado correctamente");
+    }
+
+    @Test
+    void testCreationOfReservationWithInvalidHourOnOneSaturday() {
+        LocalDateTime reservationDateBadHourSaturday = LocalDateTime.of(2031, 01, 11, 8, 00, 00);
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(reservationDateBadHourSaturday)
+                .setValue(VALUE_ON_SATURDAYS);
+
+        Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::build);
+
+        assertEquals(throwable.getMessage(), "La hora seleccionada para la reserva no es válida");
+    }
+
+    @Test
+    void testCreationOfReservationWithInvalidHourOnOneWeekday() {
+        LocalDateTime reservationDateBadHour = LocalDateTime.of(2031, 01, 10, 8, 00, 00);
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(reservationDateBadHour)
+                .setValue(VALUE_ON_SATURDAYS);
+
+        Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::build);
+
+        assertEquals(throwable.getMessage(), "La hora seleccionada para la reserva no es válida");
     }
 
 }
