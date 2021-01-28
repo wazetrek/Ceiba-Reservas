@@ -128,6 +128,17 @@ public class ReservationTest {
     }
 
     @Test
+    void testSuccessfulReservationCreationOnOneDayOfTheWeekValidatePreviousDate() {
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE);
+
+        Reservation reservation = reservationTestDataBuilder.build();
+
+        assertEquals(RESERVATION_DATE, reservation.getReservationDate());
+        assertEquals(VALUE_ON_WEEKDAY, reservation.getValue());
+    }
+
+    @Test
     void testCreationOfReservationWithSundayDay() {
         LocalDateTime reservationDateSunday = LocalDateTime.of(2021, 01, 10, 9, 00, 00);
         ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
