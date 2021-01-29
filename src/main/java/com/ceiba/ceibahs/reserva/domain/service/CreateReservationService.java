@@ -13,7 +13,7 @@ public class CreateReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public ReservationDto create(Reservation reservation) {
+    public Long create(Reservation reservation) {
         reservation.validatePreviousDays(reservation.getReservationDate());
         reservation.setStatus(ReservationStatus.ACTIVE);
         return reservationRepository.create(reservation);

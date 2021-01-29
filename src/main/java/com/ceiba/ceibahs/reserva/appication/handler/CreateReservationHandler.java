@@ -12,8 +12,8 @@ import javax.transaction.Transactional;
 @Component
 public class CreateReservationHandler {
 
-    private ReservationFactory reservationFactory;
-    private CreateReservationService createReservationService;
+    private final ReservationFactory reservationFactory;
+    private final CreateReservationService createReservationService;
 
     public CreateReservationHandler(ReservationFactory reservationFactory, CreateReservationService createReservationService) {
         this.reservationFactory = reservationFactory;
@@ -21,7 +21,7 @@ public class CreateReservationHandler {
     }
 
     @Transactional
-    public ReservationDto execute(ReservationCommand reservationCommand) {
+    public Long execute(ReservationCommand reservationCommand) {
         Reservation reservation = reservationFactory.createReservation(reservationCommand);
         return createReservationService.create(reservation);
     }

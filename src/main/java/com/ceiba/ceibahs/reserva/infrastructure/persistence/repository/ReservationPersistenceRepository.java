@@ -20,22 +20,13 @@ public class ReservationPersistenceRepository implements ReservationRepository {
     }
 
     @Override
-    public ReservationDto create(Reservation reservation) {
+    public Long create(Reservation reservation) {
         ReservationEntity reservationEntity = ReservationTranslater.parseReservationToEntity(reservation);
         AnalystEntity analyst = entityManager.getReference(AnalystEntity.class, reservation.getAnalyst().getId());
         reservationEntity.setAnalyst(analyst);
         entityManager.persist(reservationEntity);
         entityManager.flush();
-        return new ReservationDto(
-                reservationEntity.getId(),
-                reservation.getAnalyst(),
-                reservationEntity.getReservationDate(),
-                reservationEntity.getValue(),
-                reservationEntity.getDiagnosis(),
-                reservationEntity.getStatus(),
-                reservationEntity.getPaymentType(),
-                reservationEntity.getDollarValue()
-        );
+        return reservationEntity.getId();
     }
 
     @Override

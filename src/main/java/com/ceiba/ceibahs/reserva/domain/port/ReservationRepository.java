@@ -9,7 +9,7 @@ public interface ReservationRepository {
      * Permite crear una reserva
      * @return reserva creada
      */
-    public ReservationDto create(Reservation reservation);
+    Long create(Reservation reservation);
 
     /**
      * Permite actualizar el diagnóstico y el estado de la reserva
@@ -17,11 +17,11 @@ public interface ReservationRepository {
      * @param diagnosis diagnositico de la reserva
      * @param status estado de la reserva (Activa, Cancelada, Finalizada)
      */
-    public void update(Long id, String diagnosis, String status);
+    void update(Long id, String diagnosis, String status);
 
     /**
      * Permite cambiar el estado de una reserva a cancelado
      * @param id id de reserva
      */
-    public void cancelReservation(Long id);
+    void cancelReservation(Long id);
 }

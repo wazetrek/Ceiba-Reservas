@@ -21,7 +21,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ReservationDto createReservation(@RequestBody ReservationCommand reservationCommand) {
+    public Long createReservation(@RequestBody ReservationCommand reservationCommand) {
         return createReservationHandler.execute(reservationCommand);
     }
 
