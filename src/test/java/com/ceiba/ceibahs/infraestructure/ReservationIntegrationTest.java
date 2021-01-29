@@ -61,4 +61,15 @@ class ReservationIntegrationTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void testCancelSuccessfulReservation() throws Exception {
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE);
+        Reservation reservation = reservationTestDataBuilder.build();
+
+        mockMvc.perform( MockMvcRequestBuilders
+                .delete("/reservation/" + reservation.getId()))
+                .andExpect(status().isOk());
+    }
 }

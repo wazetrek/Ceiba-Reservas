@@ -13,7 +13,7 @@ public class ConsultReservationService {
         this.reservationDao = reservationDao;
     }
 
-    public List<ReservationDto> getAllReservations() {
+    public List<ReservationDto> getAllActiveReservations() {
         return reservationDao.getActiveReservations();
     }
 }

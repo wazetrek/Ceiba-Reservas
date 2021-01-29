@@ -15,7 +15,7 @@ public class ConsultReservationHandler {
         this.consultReservationService = consultReservationService;
     }
 
-    public List<ReservationDto> getAllReservations() {
-        return consultReservationService.getAllReservations();
+    public List<ReservationDto> getAllActiveReservations() {
+        return consultReservationService.getAllActiveReservations();
     }
 }

@@ -1,6 +1,5 @@
 package com.ceiba.ceibahs.analista.infrastructure.persistence;
 
-import com.ceiba.ceibahs.analista.appication.command.AnalystCommand;
 import com.ceiba.ceibahs.analista.domain.model.Analyst;
 import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;

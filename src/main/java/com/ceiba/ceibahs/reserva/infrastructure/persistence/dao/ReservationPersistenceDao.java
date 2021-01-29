@@ -22,7 +22,7 @@ public class ReservationPersistenceDao implements ReservationDao {
     @Override
     public List<ReservationDto> getActiveReservations() {
         List<ReservationEntity> reservations = reservationRepositoryDaoJPA.findByStatus(ReservationStatus.ACTIVE);
-        List<ReservationDto> reservationDtos = new ArrayList<ReservationDto>();
+        List<ReservationDto> reservationDtos = new ArrayList<>();
         for (ReservationEntity reservation: reservations) {
             reservationDtos.add(ReservationTranslater.parseReservationEntityToReservation(reservation));
         }

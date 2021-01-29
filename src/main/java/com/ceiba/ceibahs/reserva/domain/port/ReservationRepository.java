@@ -1,7 +1,6 @@
 package com.ceiba.ceibahs.reserva.domain.port;
 
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
-import com.ceiba.ceibahs.reserva.domain.model.ReservationDto;
 
 public interface ReservationRepository {
 
@@ -24,4 +23,6 @@ public interface ReservationRepository {
      * @param id id de reserva
      */
     void cancelReservation(Long id);
+
+    boolean reservationExistsById(Long id);
 }

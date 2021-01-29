@@ -5,6 +5,7 @@ import com.ceiba.ceibahs.reserva.domain.model.Reservation;
 import com.ceiba.ceibahs.reserva.domain.port.ReservationRepository;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.ReservationTranslater;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.entity.ReservationEntity;
+import com.ceiba.ceibahs.utils.enums.ReservationStatus;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -37,6 +38,13 @@ public class ReservationPersistenceRepository implements ReservationRepository {
 
     @Override
     public void cancelReservation(Long id) {
+        ReservationEntity reservationEntity = reservationRepositoryJPA.getOne(id);
+        reservationEntity.setStatus(ReservationStatus.CANCELLED);
+        reservationRepositoryJPA.save(reservationEntity);
+    }
 
+    @Override
+    public boolean reservationExistsById(Long id) {
+        return reservationRepositoryJPA.existsById(id);
     }
 }
