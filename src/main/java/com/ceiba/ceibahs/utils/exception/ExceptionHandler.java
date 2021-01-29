@@ -19,11 +19,10 @@ public class ExceptionHandler {
 		CODIGOS_ESTADO.put(MaxCharacterException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 		CODIGOS_ESTADO.put(InvalidReservationHourException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 		CODIGOS_ESTADO.put(NoZeroValueException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+		CODIGOS_ESTADO.put(DataNoFoundException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 	}
 	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
 	public final ResponseEntity<Error> handleAllException(Exception exception) {
-
-		System.out.println(exception);
 
 		ResponseEntity<Error> resultado;
 		
