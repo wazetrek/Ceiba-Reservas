@@ -1,6 +1,8 @@
 package com.ceiba.ceibahs.infraestructure;
 
 import com.ceiba.ceibahs.analista.domain.model.Analyst;
+import com.ceiba.ceibahs.analista.domain.port.AnalystRepository;
+import com.ceiba.ceibahs.analista.domain.service.CreateAnalystService;
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
 import com.ceiba.ceibahs.testdatabuilder.AnalystTestDataBuilder;
 import com.ceiba.ceibahs.testdatabuilder.ReservationTestDataBuilder;
@@ -9,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -44,11 +48,10 @@ class ReservationIntegrationTest {
 
     @Test
     void testCreateSuccessfulReservation() throws Exception {
-        Analyst analyst = new AnalystTestDataBuilder().setId(1L).build();
+        Analyst analyst = new AnalystTestDataBuilder().setId(1000L).build();
         ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
                 .setReservationDate(RESERVATION_DATE)
                 .setAnalyst(analyst);
-
         Reservation reservation = reservationTestDataBuilder.build();
 
         mockMvc.perform( MockMvcRequestBuilders
