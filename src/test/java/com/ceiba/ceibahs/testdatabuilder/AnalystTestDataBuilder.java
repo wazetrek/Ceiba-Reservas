@@ -12,7 +12,7 @@ public class AnalystTestDataBuilder {
     private static final Boolean STATUS = true;
     private static final LocalDateTime BIRTH_DATE = LocalDateTime.of(1999, 01, 10, 00, 00);
 
-    private Long id;
+    private final Long id;
     private String fullName;
     private String employeeCode;
     private Boolean status;
@@ -26,13 +26,31 @@ public class AnalystTestDataBuilder {
         this.birthDate = BIRTH_DATE;
     }
 
-    public Analyst withoutFullName() {
-        return new Analyst(id, null, employeeCode, status, birthDate);
+    public AnalystTestDataBuilder setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
     }
 
-    public Analyst build() {
-        return new Analyst(id, fullName, employeeCode, status, birthDate);
+    public AnalystTestDataBuilder setStatus(Boolean status) {
+        this.status = status;
+        return this;
     }
+
+    public AnalystTestDataBuilder setBirthDate(LocalDateTime birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public AnalystTestDataBuilder withoutFullName() {
+        this.fullName = null;
+        return this;
+    }
+
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
+    public Analyst build() { return new Analyst(id, fullName, employeeCode, status, birthDate); }
 
 
 }

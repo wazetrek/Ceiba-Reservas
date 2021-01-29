@@ -1,31 +1,31 @@
 package com.ceiba.ceibahs.domain.unit;
 
 import com.ceiba.ceibahs.analista.domain.model.Analyst;
-import com.ceiba.ceibahs.analista.domain.port.AnalystRepository;
-import com.ceiba.ceibahs.analista.domain.service.CreateAnalystService;
 import com.ceiba.ceibahs.testdatabuilder.AnalystTestDataBuilder;
 import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnalystTest {
 
     @Test
-    public void validateCorrectAnalystCreation() {
-        Analyst analyst = new AnalystTestDataBuilder().build();
-        AnalystRepository analystRepository = Mockito.mock(AnalystRepository.class);
-        Mockito.when(analystRepository.create(analyst)).thenReturn(analyst);
-        CreateAnalystService createAnalystService = new CreateAnalystService(analystRepository);
-        Analyst newAnalystId = createAnalystService.create(analyst);
-        assertEquals(newAnalystId, analyst);
+    public void testSuccessfulAnalystCreation() {
+        String fullName = "Juan Camilo Perez";
+        AnalystTestDataBuilder analystTestDataBuilder = new AnalystTestDataBuilder()
+                .setFullName(fullName);
+        Analyst analyst = analystTestDataBuilder.build();
+        analyst.generateEmployeeCode();
+
+        assertEquals(fullName, analyst.getFullName());
+
     }
 
     @Test
-    public void validateFullNameNullValidation() {
-        assertThrows(ObligatoryFieldException.class, () -> {
-            new AnalystTestDataBuilder().withoutFullName();
-        });
+    public void testAnalystCreationWithNullFullName() {
+        AnalystTestDataBuilder analystTestDataBuilder = new AnalystTestDataBuilder()
+                .withoutFullName();
+        Throwable throwable = assertThrows(ObligatoryFieldException.class, analystTestDataBuilder::build);
+
+        assertEquals(throwable.getMessage(), "Nombre completo obligatorio");
     }
 }

@@ -14,13 +14,7 @@ public class CreateAnalystService {
     }
 
     public Analyst create(Analyst analyst) {
-        String employeeCode = generateEmployeeCode();
-        analyst.setEmployeeCode(employeeCode);
+        analyst.generateEmployeeCode();
         return this.analystRepository.create(analyst);
-    }
-
-    private String generateEmployeeCode() {
-        Date date = new Date();
-        return Long.toString(date.getTime());
     }
 }

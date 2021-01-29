@@ -10,11 +10,11 @@ public class Analyst {
 
     private static final String FULL_NAME_OBLIGATORY = "Nombre completo obligatorio";
 
-    private Long id;
-    private String fullName;
+    private final Long id;
+    private final String fullName;
     private String employeeCode;
-    private Boolean status;
-    private LocalDateTime birthDate;
+    private final Boolean status;
+    private final LocalDateTime birthDate;
 
     public Analyst(Long id, String fullName, String employeeCode, Boolean status, LocalDateTime birthDate) {
 
@@ -27,7 +27,8 @@ public class Analyst {
         this.birthDate = birthDate;
     }
 
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
+    public void generateEmployeeCode() {
+        Long milliseconds = System.currentTimeMillis();
+        this.employeeCode = milliseconds.toString();
     }
 }
