@@ -6,10 +6,10 @@ import com.ceiba.ceibahs.utils.exception.ObligatoryFieldException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AnalystTest {
+class AnalystTest {
 
     @Test
-    public void testSuccessfulAnalystCreation() {
+    void testSuccessfulAnalystCreation() {
         String fullName = "Juan Camilo Perez";
         AnalystTestDataBuilder analystTestDataBuilder = new AnalystTestDataBuilder()
                 .setFullName(fullName);
@@ -21,11 +21,11 @@ public class AnalystTest {
     }
 
     @Test
-    public void testAnalystCreationWithNullFullName() {
+    void testAnalystCreationWithNullFullName() {
         AnalystTestDataBuilder analystTestDataBuilder = new AnalystTestDataBuilder()
                 .withoutFullName();
         Throwable throwable = assertThrows(ObligatoryFieldException.class, analystTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "Nombre completo obligatorio");
+        assertEquals("Nombre completo obligatorio", throwable.getMessage());
     }
 }

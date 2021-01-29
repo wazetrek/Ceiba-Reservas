@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AnalystIntegrationTest {
+class AnalystIntegrationTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -39,7 +39,7 @@ public class AnalystIntegrationTest {
     }
 
     @Test
-    public void createAnalystTest() throws Exception {
+    void createAnalystTest() throws Exception {
 
         Long id = 10L;
         String fullName = "Pepe";
@@ -56,7 +56,7 @@ public class AnalystIntegrationTest {
     }
 
     @Test
-    public void createAnalystWithoutNameTest() throws ObligatoryFieldException, Exception {
+    void createAnalystWithoutNameTest() throws Exception {
 
         Long id = 10L;
         String employeeCode = "1020";

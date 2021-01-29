@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-public class ReservationTest {
+class ReservationTest {
 
     private static final LocalDateTime RESERVATION_DATE = LocalDateTime.of(2031, 01, 10, 9, 00, 00);
     private static final LocalDateTime RESERVATION_DATE_SATURDAY = LocalDateTime.of(2021, 01, 9, 9, 00, 00);
@@ -79,7 +79,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(ObligatoryFieldException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "La fecha de reserva es obligatoria");
+        assertEquals("La fecha de reserva es obligatoria", throwable.getMessage());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(NoZeroValueException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "El valor de reserva es obligatorio");
+        assertEquals("El valor de reserva es obligatorio", throwable.getMessage());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(ObligatoryFieldException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "La reserva debe tener un analista seleccionado");
+        assertEquals("La reserva debe tener un analista seleccionado", throwable.getMessage());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(ObligatoryFieldException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "Debe seleccionar un tipo de pago");
+        assertEquals("Debe seleccionar un tipo de pago", throwable.getMessage());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::validatePreviousDate);
 
-        assertEquals(throwable.getMessage(), "No es posible programar una reserva para un día y hora anterior al actual");
+        assertEquals("No es posible programar una reserva para un día y hora anterior al actual", throwable.getMessage());
     }
 
     @Test
@@ -146,7 +146,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(ReservationDayNotValidException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "No es posible programar una reserva para un día domingo");
+        assertEquals("No es posible programar una reserva para un día domingo", throwable.getMessage());
     }
 
     @Test
@@ -157,7 +157,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(NoValidReservationValueException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "El valor de la reserva no ha podido ser calculado correctamente");
+        assertEquals("El valor de la reserva no ha podido ser calculado correctamente", throwable.getMessage());
     }
 
     @Test
@@ -168,7 +168,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(NoValidReservationValueException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "El valor de la reserva no ha podido ser calculado correctamente");
+        assertEquals("El valor de la reserva no ha podido ser calculado correctamente", throwable.getMessage());
     }
 
     @Test
@@ -180,7 +180,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "La hora seleccionada para la reserva no es válida");
+        assertEquals("La hora seleccionada para la reserva no es válida", throwable.getMessage());
     }
 
     @Test
@@ -192,7 +192,7 @@ public class ReservationTest {
 
         Throwable throwable = assertThrows(InvalidReservationHourException.class, reservationTestDataBuilder::build);
 
-        assertEquals(throwable.getMessage(), "La hora seleccionada para la reserva no es válida");
+        assertEquals("La hora seleccionada para la reserva no es válida", throwable.getMessage());
     }
 
 }
