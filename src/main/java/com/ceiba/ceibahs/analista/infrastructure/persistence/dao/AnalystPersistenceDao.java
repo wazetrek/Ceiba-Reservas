@@ -23,7 +23,7 @@ public class AnalystPersistenceDao implements AnalystDao {
 
     @Override
     public List<AnalystDto> getAnalysts() {
-        List<AnalystDto> analystDtos = new ArrayList<>();
+        List<AnalystDto> analystDtos = new ArrayList<AnalystDto>();
         Query query = entityManager.createNamedQuery(ACTIVE_ANALYSTS);
         List analystEntityList = query.getResultList();
         for (Object analystEntity : analystEntityList) {

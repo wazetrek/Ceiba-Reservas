@@ -1,5 +1,6 @@
 package com.ceiba.ceibahs.analista.infrastructure.persistence;
 
+import com.ceiba.ceibahs.analista.appication.command.AnalystCommand;
 import com.ceiba.ceibahs.analista.domain.model.Analyst;
 import com.ceiba.ceibahs.analista.domain.model.AnalystDto;
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
@@ -21,5 +22,9 @@ public final class AnalystTranslater {
 
     public static AnalystDto parseAnalystToDto(AnalystEntity analystEntity) {
         return new AnalystDto(analystEntity.getId(), analystEntity.getFullName(), analystEntity.getEmployeeCode(), analystEntity.getStatus(), analystEntity.getBirthDate());
+    }
+
+    public static Analyst parseAnalystEntityToAnalyst(AnalystEntity analystEntity) {
+        return new Analyst(analystEntity.getId(), analystEntity.getFullName(), analystEntity.getEmployeeCode(), analystEntity.getStatus(), analystEntity.getBirthDate());
     }
 }

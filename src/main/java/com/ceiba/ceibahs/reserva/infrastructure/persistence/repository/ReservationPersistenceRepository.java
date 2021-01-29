@@ -2,7 +2,6 @@ package com.ceiba.ceibahs.reserva.infrastructure.persistence.repository;
 
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
-import com.ceiba.ceibahs.reserva.domain.model.ReservationDto;
 import com.ceiba.ceibahs.reserva.domain.port.ReservationRepository;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.ReservationTranslater;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.entity.ReservationEntity;
@@ -14,9 +13,11 @@ import javax.persistence.EntityManager;
 public class ReservationPersistenceRepository implements ReservationRepository {
 
     private final EntityManager entityManager;
+    private final ReservationRepositoryJPA reservationRepositoryJPA;
 
-    public ReservationPersistenceRepository(EntityManager entityManager) {
+    public ReservationPersistenceRepository(EntityManager entityManager, ReservationRepositoryJPA reservationRepositoryJPA) {
         this.entityManager = entityManager;
+        this.reservationRepositoryJPA = reservationRepositoryJPA;
     }
 
     @Override

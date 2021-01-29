@@ -23,6 +23,8 @@ public class ExceptionHandler {
 	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
 	public final ResponseEntity<Error> handleAllException(Exception exception) {
 
+		System.out.println(exception);
+
 		ResponseEntity<Error> resultado;
 		
 		String excepcionNombre=exception.getClass().getSimpleName();
