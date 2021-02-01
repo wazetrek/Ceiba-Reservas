@@ -18,4 +18,8 @@ public class ConsultReservationHandler {
     public List<ReservationDto> getAllActiveReservations() {
         return consultReservationService.getAllActiveReservations();
     }
+
+    public ReservationDto getReservationById(Long id) {
+        return consultReservationService.getReservationById(id);
+    }
 }

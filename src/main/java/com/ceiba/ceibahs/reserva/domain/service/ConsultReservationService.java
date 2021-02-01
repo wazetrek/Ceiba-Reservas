@@ -16,4 +16,8 @@ public class ConsultReservationService {
     public List<ReservationDto> getAllActiveReservations() {
         return reservationDao.getActiveReservations();
     }
+
+    public ReservationDto getReservationById(Long id) {
+        return reservationDao.getReservationById(id);
+    }
 }

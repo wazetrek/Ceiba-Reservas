@@ -12,4 +12,6 @@ public interface ReservationDao {
      */
     List<ReservationDto> getActiveReservations();
 
+    ReservationDto getReservationById(Long id);
+
 }

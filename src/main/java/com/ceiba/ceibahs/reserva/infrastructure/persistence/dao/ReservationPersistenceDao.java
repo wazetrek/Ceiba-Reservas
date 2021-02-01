@@ -28,4 +28,9 @@ public class ReservationPersistenceDao implements ReservationDao {
         }
         return reservationDtos;
     }
+
+    @Override
+    public ReservationDto getReservationById(Long id) {
+        return ReservationTranslater.parseReservationEntityToReservation(reservationRepositoryDaoJPA.findById(id).get());
+    }
 }

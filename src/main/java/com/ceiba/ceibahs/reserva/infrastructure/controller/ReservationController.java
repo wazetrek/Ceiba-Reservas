@@ -33,6 +33,11 @@ public class ReservationController {
         return consultReservationHandler.getAllActiveReservations();
     }
 
+    @GetMapping("/{id}")
+    public ReservationDto getReservationById(@PathVariable(name = "id") Long id) {
+        return consultReservationHandler.getReservationById(id);
+    }
+
     @DeleteMapping("/{id}")
     public void cancelReservation(@PathVariable(name = "id") Long id) {
         updateReservationHandler.cancelReservation(id);
