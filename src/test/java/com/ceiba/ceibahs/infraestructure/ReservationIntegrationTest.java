@@ -72,4 +72,15 @@ class ReservationIntegrationTest {
                 .delete("/reservation/" + reservation.getId()))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void testConsultReservationById() throws Exception {
+        ReservationTestDataBuilder reservationTestDataBuilder = new ReservationTestDataBuilder()
+                .setReservationDate(RESERVATION_DATE);
+        Reservation reservation = reservationTestDataBuilder.build();
+
+        mockMvc.perform( MockMvcRequestBuilders
+                .get("/reservation/" + reservation.getId()))
+                .andExpect(status().isOk());
+    }
 }
