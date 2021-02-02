@@ -7,7 +7,7 @@ import com.ceiba.ceibahs.utils.exception.DataNoFoundException;
 
 public class CreateReservationService {
 
-    private final static String ANALYST_NOT_FOUND = "El analista seleccionado no se encuentra registrado en la aplicación";
+    private static final String ANALYST_NOT_FOUND = "El analista seleccionado no se encuentra registrado en la aplicación";
     private final ReservationRepository reservationRepository;
 
     public CreateReservationService(ReservationRepository reservationRepository) {
