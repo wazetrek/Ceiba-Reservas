@@ -25,4 +25,6 @@ public interface ReservationRepository {
     void cancelReservation(Long id);
 
     boolean reservationExistsById(Long id);
+
+    boolean analystExistsById(Long id);
 }

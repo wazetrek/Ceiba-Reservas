@@ -1,6 +1,7 @@
 package com.ceiba.ceibahs.reserva.infrastructure.persistence.repository;
 
 import com.ceiba.ceibahs.analista.infrastructure.persistence.entity.AnalystEntity;
+import com.ceiba.ceibahs.analista.infrastructure.persistence.repository.AnalystRepositoryJPA;
 import com.ceiba.ceibahs.reserva.domain.model.Reservation;
 import com.ceiba.ceibahs.reserva.domain.port.ReservationRepository;
 import com.ceiba.ceibahs.reserva.infrastructure.persistence.ReservationTranslater;
@@ -15,10 +16,12 @@ public class ReservationPersistenceRepository implements ReservationRepository {
 
     private final EntityManager entityManager;
     private final ReservationRepositoryJPA reservationRepositoryJPA;
+    private final AnalystRepositoryJPA analystRepositoryJPA;
 
-    public ReservationPersistenceRepository(EntityManager entityManager, ReservationRepositoryJPA reservationRepositoryJPA) {
+    public ReservationPersistenceRepository(EntityManager entityManager, ReservationRepositoryJPA reservationRepositoryJPA, AnalystRepositoryJPA analystRepositoryJPA) {
         this.entityManager = entityManager;
         this.reservationRepositoryJPA = reservationRepositoryJPA;
+        this.analystRepositoryJPA = analystRepositoryJPA;
     }
 
     @Override
@@ -46,5 +49,10 @@ public class ReservationPersistenceRepository implements ReservationRepository {
     @Override
     public boolean reservationExistsById(Long id) {
         return reservationRepositoryJPA.existsById(id);
+    }
+
+    @Override
+    public boolean analystExistsById(Long id) {
+        return analystRepositoryJPA.existsById(id);
     }
 }
