@@ -21,6 +21,7 @@ public class AnalystPersistenceRepository implements AnalystRepository {
     public Analyst create(Analyst analyst) {
 
         AnalystEntity analystEntity = AnalystTranslater.parseAnalystToEntity(analyst);
+        analystEntity.setStatus(true);
         entityManager.persist(analystEntity);
         entityManager.flush();
         return new Analyst(
