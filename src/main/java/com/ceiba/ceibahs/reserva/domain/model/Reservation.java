@@ -24,6 +24,8 @@ public class Reservation {
     private static final String RESERVATION_DAY_NOT_VALID = "No es posible programar una reserva para un día domingo";
     private static final String INVALID_RESERVATION_DATE = "No es posible programar una reserva para un día y hora anterior al actual";
     private static final String INVALID_RESERVATION_HOUR = "La hora seleccionada para la reserva no es válida";
+    private static final int SATURDAY_VALUE = 40000;
+    private static final int WEEKDAY_VALUE = 35000;
 
     private final Long id;
     private final Analyst analyst;
@@ -103,11 +105,11 @@ public class Reservation {
     public void validateReservationValue(int value, LocalDateTime reservationDate){
         int dayOfTheWeek = reservationDate.getDayOfWeek().getValue();
         if (dayOfTheWeek == DayOfWeek.SATURDAY.getValue()) {
-            if (value != 40000) {
+            if (value != SATURDAY_VALUE) {
                 throw new NoValidReservationValueException(INVALID_RESERVATION_VALUE);
             }
         } else {
-            if (value != 35000) {
+            if (value != WEEKDAY_VALUE) {
                 throw new NoValidReservationValueException(INVALID_RESERVATION_VALUE);
             }
         }
